@@ -36,12 +36,12 @@ const initialValues: AdressValue = {
   country: "",
 };
 interface propData {
-  submit: any;
-  setValues: any;
+  submit: (activeStep: number) => void;
+  setValues: (value: {}) => void;
   prevValues: any;
 }
 export const Address = ({ submit, setValues, prevValues }: propData) => {
-  const handleSubmit = (values: any): void => {
+  const handleSubmit = (values: AdressValue): void => {
     submit(2);
     setValues({ ...values, ...prevValues });
   };

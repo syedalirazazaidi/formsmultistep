@@ -4,3 +4,11 @@ export type AdressValue = {
   city: string;
   country: string;
 };
+export type AdressValueType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  area?: string;
+  city?: string;
+  country?: string;
+};

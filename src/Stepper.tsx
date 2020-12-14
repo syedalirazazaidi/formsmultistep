@@ -7,7 +7,6 @@ import { PersonalData } from "./components/PersonalData";
 import { Address } from "./components/Address";
 import { Review } from "./components/Review";
 import "./App.css";
-import { TextField, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,7 +32,7 @@ function getStepContent(
   stepIndex: number,
   setActiveStep: React.Dispatch<React.SetStateAction<number>>,
   value: {},
-  setValues: React.Dispatch<React.SetStateAction<number>>
+  setValues: React.Dispatch<React.SetStateAction<{}>>
 ) {
   switch (stepIndex) {
     case 0:
@@ -77,11 +76,7 @@ export default function StepFormall() {
       <div className="contaStep">
         {getStepContent(activeStep, setActiveStep, value, setValues)}
       </div>
-      <div className="contaStep">
-        {/* <Button variant="contained" color="primary" onClick={nextChapter}>
-          Next
-        </Button> */}
-      </div>
+      <div className="contaStep"></div>
     </div>
   );
 }

@@ -1,20 +1,14 @@
 import React from "react";
 import { List, ListItem, ListItemText } from "@material-ui/core/";
-
+import { AdressValueType } from "../Types/personalType";
 import { TextField, Button } from "@material-ui/core";
 interface allProps {
   value: any;
-  // value: {
-  // firstName: string;
-  // lastName: string;
-  // email: string;
-  // area: string;
-  // city: string;
-  // country: string;
-  // };
-  submit: any;
+
+  submit: (activeStep: number) => void;
 }
 export const Review = ({ value, submit }: allProps) => {
+  console.log(value, "VALUE");
   const { firstName, lastName, email, area, city, country } = value;
 
   return (

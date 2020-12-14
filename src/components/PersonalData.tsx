@@ -36,12 +36,15 @@ const initialValues: FormValue = {
   email: "",
 };
 interface propData {
-  submit: any;
-  setValues: any;
+  submit: (activeStep: number) => void;
+  setValues: (value: {}) => void;
   prevValues: any;
 }
+// interface propDataVl {
+//   prevValues: {};
+// }
 export const PersonalData = ({ submit, setValues, prevValues }: propData) => {
-  const handleSubmit = (values: any): void => {
+  const handleSubmit = (values: FormValue): void => {
     submit(1);
     setValues({ ...values });
   };
@@ -52,13 +55,7 @@ export const PersonalData = ({ submit, setValues, prevValues }: propData) => {
         <Formik
           initialValues={prevValues}
           validationSchema={DataSchema}
-          onSubmit={
-            handleSubmit
-            //   (values: FormValue): void => {
-            //   submit(1);
-            //   // alert(JSON.stringify(values));
-            // }
-          }
+          onSubmit={handleSubmit}
         >
           {({ dirty, isValid }) => (
             <Form>
@@ -99,12 +96,6 @@ export const PersonalData = ({ submit, setValues, prevValues }: propData) => {
               <Button type="submit" variant="contained" color="primary">
                 Next
               </Button>
-              {/* <button
-                // disabled={!dirty || !isValid}
-                type="submit"
-              >
-                Submit
-              </button> */}
             </Form>
           )}
         </Formik>
