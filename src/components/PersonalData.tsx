@@ -1,71 +1,114 @@
 import React from "react";
 
-import { Field, Form, Formik, FormikProps } from "formik";
+import { Field, Form, Formik, FormikProps, ErrorMessage } from "formik";
 import { TextField, Button } from "@material-ui/core";
 
-import * as yup from "yup";
-let SignupSchema = yup.object().shape({
-  firstName: yup.string().required("This field is required."),
-  lastName: yup.string().required("This field is required."),
-  email: yup.string().email().required("This field is required."),
-  password: yup
-    .string()
-    .min(6, "Password is too short.")
-    .max(20, "Password is too long.")
-    .required("This field is required."),
+import { useFormik } from "formik";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import * as Yup from "yup";
+import { FormValue } from "../Types/personalType";
+const useStyles = makeStyles((theme: Theme) => ({
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
+let DataSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .max(15, "Must be 15 characters or less")
+    .min(5, "Must be 5 characters or more")
+    .required("Required"),
+  lastName: Yup.string()
+    .max(15, "Must be 15 characters or less")
+    .min(5, "Must be 5 characters or more")
+    .required("Required"),
+  email: Yup.string().email("Invalid email address").required("Required"),
 });
-export const PersonalData = () => {
+
+const initialValues: FormValue = {
+  firstName: "",
+  lastName: "",
+  email: "",
+};
+interface propData {
+  submit: any;
+  setValues: any;
+  prevValues: any;
+}
+export const PersonalData = ({ submit, setValues, prevValues }: propData) => {
+  const handleSubmit = (values: any): void => {
+    submit(1);
+    setValues({ ...values });
+  };
+
   return (
     <div>
-      <Formik
-        initialValues={{
-          firstName: "",
-          lastName: "",
-          contact: "",
-        }}
-        validationSchema={SignupSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
-        <Form>
-          <div>
-            <TextField
-              margin="normal"
-              name="firstName"
-              label="First Name"
-              color="secondary"
-              variant="outlined"
-              autoFocus
-            />
-          </div>
-          <div>
-            <TextField
-              margin="normal"
-              name="lastName"
-              label="Last Name"
-              color="secondary"
-              variant="outlined"
-              autoFocus
-            />
-          </div>
-          <div>
-            <TextField
-              margin="normal"
-              name="contact"
-              label="Contact No"
-              color="secondary"
-              variant="outlined"
-              autoFocus
-            />
-          </div>
-          <div>
-            <Button variant="contained" color="primary">
-              Next
-            </Button>
-          </div>
-        </Form>
-      </Formik>
+      <div>
+        <Formik
+          initialValues={prevValues}
+          validationSchema={DataSchema}
+          onSubmit={
+            handleSubmit
+            //   (values: FormValue): void => {
+            //   submit(1);
+            //   // alert(JSON.stringify(values));
+            // }
+          }
+        >
+          {({ dirty, isValid }) => (
+            <Form>
+              <div>
+                <Field
+                  as={TextField}
+                  margin="normal"
+                  name="firstName"
+                  label="First Name"
+                  color="primary"
+                  variant="outlined"
+                  helperText={<ErrorMessage name="firstName" />}
+                  autoFocus
+                />
+              </div>
+              <div>
+                <Field
+                  as={TextField}
+                  margin="normal"
+                  name="lastName"
+                  label="Last Name"
+                  color="primary"
+                  variant="outlined"
+                  helperText={<ErrorMessage name="lastName" />}
+                />
+              </div>
+              <div>
+                <Field
+                  as={TextField}
+                  margin="normal"
+                  name="email"
+                  label="E-mail"
+                  color="primary"
+                  variant="outlined"
+                  helperText={<ErrorMessage name="email" />}
+                />
+              </div>
+              <Button type="submit" variant="contained" color="primary">
+                Next
+              </Button>
+              {/* <button
+                // disabled={!dirty || !isValid}
+                type="submit"
+              >
+                Submit
+              </button> */}
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
   );
 };

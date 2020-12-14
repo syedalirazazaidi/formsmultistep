@@ -23,18 +23,16 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.stepper-class{
-  align-items: center;
+.contaStep{
   justify-content: center;
+  align-Items: center;
   display: flex;
-  width:'22%';
-  margin:33px;
 }
 .main-class{
   color: brown;
-          margin-top:3rem;
-          padding: .5rem;
-          font-size: 2.5rem;
+  margin-top:3rem;
+  padding: .5rem;
+  font-size: 2.5rem;
 }
  @media only screen and (max-width: 600px){
   .stepper-class {
