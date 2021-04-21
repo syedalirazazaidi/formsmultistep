@@ -1,7 +1,6 @@
 import React from "react";
 import { List, ListItem, ListItemText } from "@material-ui/core/";
-import { AdressValueType } from "../Types/personalType";
-import { TextField, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 interface allProps {
   value: any;
 

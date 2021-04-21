@@ -1,23 +1,19 @@
 import React from "react";
-
-import { Field, Form, Formik, FormikProps, ErrorMessage } from "formik";
+import { Field, Form, Formik, ErrorMessage } from "formik";
 import { TextField, Button } from "@material-ui/core";
-
-import { useFormik } from "formik";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import { AdressValue } from "../Types/personalType";
-const useStyles = makeStyles((theme: Theme) => ({
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  button: {
-    margin: theme.spacing(1),
-  },
-}));
+// const useStyles = makeStyles((theme: Theme) => ({
+//   form: {
+//     display: "flex",
+//     flexDirection: "column",
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+//   button: {
+//     margin: theme.spacing(1),
+//   },
+// }));
 let DataSchema = Yup.object().shape({
   area: Yup.string()
     .max(15, "Must be 15 characters or less")
@@ -30,11 +26,11 @@ let DataSchema = Yup.object().shape({
   country: Yup.string().required("Required"),
 });
 
-const initialValues: AdressValue = {
-  area: "",
-  city: "",
-  country: "",
-};
+// const initialValues: AdressValue = {
+//   area: "",
+//   city: "",
+//   country: "",
+// };
 interface propData {
   submit: (activeStep: number) => void;
   setValues: (value: {}) => void;
